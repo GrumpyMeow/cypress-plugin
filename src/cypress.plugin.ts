@@ -1,10 +1,12 @@
 import * as https from 'https';
-
-import { Client, Configuration } from '@ng-apimock/base-client';
-import urljoin = require('url-join');
 import * as uuid from 'uuid';
 
+import { Client, Configuration } from '@ng-apimock/base-client';
+
 import { RequestObject } from './request.object';
+
+import urljoin = require('url-join');
+
 
 /** Cypress plugin for ng-apimock. */
 export class CypressPlugin implements Client {
@@ -159,6 +161,17 @@ export class CypressPlugin implements Client {
     setVariables(variables: { [key: string]: any }): Promise<any> {
         return this.invoke('variables', 'PUT', variables)
             .then(cy.wrap);
+    }
+
+    /**
+     * Sets the apimock cookie.
+     * @return {Promise} promise The promise.
+     */
+     setSessionCookie(): Promise<any> {
+        return new Cypress.Promise((resolve, reject) => {
+            cy.setCookie(this.configuration.identifier, this.ngApimockId);
+            resolve();
+        });
     }
 
     /**

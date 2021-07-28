@@ -63,6 +63,10 @@ function load() {
     Cypress.Commands.add('setVariables', (variables: { [key: string]: string }) => {
         plugin.setVariables(variables);
     });
+
+    Cypress.Commands.add('setSessionCookie', () => {
+        plugin.setSessionCookie();
+    });
 }
 
 module.exports = {

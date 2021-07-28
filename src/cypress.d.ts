@@ -15,5 +15,6 @@ declare namespace Cypress {
       setMocksToPassThrough(): Promise<any>;
       setVariable(key: string, value: any): Promise<any>;
       setVariables(variables: { [key: string]: any }): Promise<any>;
+      setSessionCookie(): Promise<any>;
   }
 }
